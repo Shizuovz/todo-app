@@ -1,8 +1,7 @@
-
 import { GoogleGenAI, Type } from "@google/genai";
 import { SmartSuggestion } from "./types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export async function getSmartSuggestion(taskTitle: string): Promise<SmartSuggestion> {
   try {
@@ -29,7 +28,10 @@ export async function getSmartSuggestion(taskTitle: string): Promise<SmartSugges
       }
     });
 
-    return JSON.parse(response.text.trim());
+    const text = response.text;
+    if (!text) throw new Error("No response text from Gemini");
+    
+    return JSON.parse(text.trim());
   } catch (error) {
     console.error("AI Suggester Error:", error);
     return {
