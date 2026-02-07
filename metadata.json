@@ -1,0 +1,5 @@
+{
+  "name": "TaskFlow Pro",
+  "description": "A production-ready, AI-enhanced To-Do application featuring a clean design, persistence, and smart task refinement using Gemini.",
+  "requestFramePermissions": []
+}
